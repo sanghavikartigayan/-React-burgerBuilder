@@ -92,26 +92,39 @@ class BurgerBuilder extends Component {
     }
 
     purchaseContinueHandler = () => {
-        this.setState({ loading: true });
+        const queryParams = [];
 
-        const order = {
-            ingredients: this.state.ingredients,
-            price: this.state.totalPrice,
-            customer: {
-                name: 'Sanghavi Kartigayan',
-                address: {
-                    street: '45 Plowshare Crescent',
-                    postalCode: 'M9V4Y1',
-                    country: 'Canada'
-                },
-                email: 'sanghavikartigayan@gmail.com'
-            },
-            deliveryMethod: 'fastest'
+        for (let i in this.state.ingredients) {
+            queryParams.push(encodeURIComponent(i) + "=" + encodeURIComponent(this.state.ingredients[i]));
         }
 
-        axios.post('/orders.json', order)
-            .then(response => this.setState({ loading: false, purchased: false }))
-            .catch(err => this.setState({ loading: false, purchased: false }));
+        const queryString = queryParams.join('&');
+
+        this.props.history.push({
+            pathname: '/checkout',
+            search: '?' + queryString
+        });
+
+        // this.setState({ loading: true });
+
+        // const order = {
+        //     ingredients: this.state.ingredients,
+        //     price: this.state.totalPrice,
+        //     customer: {
+        //         name: 'Sanghavi Kartigayan',
+        //         address: {
+        //             street: '45 Plowshare Crescent',
+        //             postalCode: 'M9V4Y1',
+        //             country: 'Canada'
+        //         },
+        //         email: 'sanghavikartigayan@gmail.com'
+        //     },
+        //     deliveryMethod: 'fastest'
+        // }
+
+        // axios.post('/orders.json', order)
+        //     .then(response => this.setState({ loading: false, purchased: false }))
+        //     .catch(err => this.setState({ loading: false, purchased: false }));
     }
 
     render() {
