@@ -6,12 +6,8 @@
   border: 1px solid #eee;
   padding: 10px;
   box-sizing: border-box;
-  background: linear-gradient(#f1b151, #ac721c);
-}
-
-.Input {
-  display: block;
-  margin: 8px auto;
+  background-color: white;
+  /* background: linear-gradient(#f1b151, #ac721c); */
 }
 
 @media (min-width: 600px) {
