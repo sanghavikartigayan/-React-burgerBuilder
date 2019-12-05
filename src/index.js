@@ -5,11 +5,14 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import { Provider } from 'react-redux';
-import reducer from './store/reducer';
-import { createStore } from 'redux';
+import reducer from './store/reducers/burgerBuilder';
+import { createStore, applyMiddleware, compose } from 'redux';
+import thunk from 'redux-thunk';
 
+// For async code, advanced devtools setup
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
-const store = createStore(reducer);
+const store = createStore(reducer, composeEnhancers(applyMiddleware(thunk)));
 
 // FOR ROUTING BETWEEN THE PAGES, WRAP THE APPLICATION INSIDE BROWERROUTER - REACT
 const app = (
