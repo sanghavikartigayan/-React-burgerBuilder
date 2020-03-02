@@ -20,7 +20,7 @@ class App extends Component {
         {/* switching between components based on the url-path */}
         <Route path="/auth" component={Auth} />
         <Route exact path="/" component={BurgerBuilder} />
-        <Redirect to="/"></Redirect>
+        <Redirect to="/" />
       </Switch>
     );
 
@@ -30,7 +30,8 @@ class App extends Component {
           <Route path="/orders" component={Order} />
           <Route path="/checkout" component={Checkout} />
           <Route path="/logout" component={Logout} />
-          <Redirect to="/"></Redirect>
+          <Route exact path="/" component={BurgerBuilder} />
+          <Redirect to="/" />
         </Switch>
       );
     }
